@@ -49,4 +49,32 @@ MIT License — free to use, modify, and distribute.
 
 ## Usage Examples
 
+### Channel Performance Index
+
+```python
+from src.main import PharmacyChannelAnalytics
+import pandas as pd
+
+analyzer = PharmacyChannelAnalytics()
+df = pd.read_csv("sample_data/channel_performance.csv")
+
+cpi = analyzer.calculate_channel_performance_index(
+    df,
+    channel_col="channel",
+    sales_col="sales_value",
+    target_col="sales_target",
+    cost_col="channel_cost",
+)
+print(cpi[["channel", "sales_share_pct", "target_attainment_pct", "roi_pct", "cpi_score", "cpi_band"]])
+```
+
+### Channel Growth Rates
+
+```python
+growth = analyzer.get_channel_growth_rates(
+    df, channel_col="channel", sales_col="sales_value", period_col="period"
+)
+print(growth[["channel", "period", "sales_value", "growth_rate_pct", "growth_trend"]])
+```
+
 Refer to the `tests/` directory for comprehensive example implementations.
