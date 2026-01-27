@@ -1,5 +1,20 @@
 # Changelog - Pharmacy Channel Analytics
 
+## [1.6.0] - 2026-03-25
+
+### Added
+- **Channel ROI Analyzer** (`src/channel_roi_analyzer.py`) — investment return analysis across pharma distribution channels
+  - Gross profit, gross margin %, and contribution margin per channel
+  - ROI % computed as (gross profit − investment) / investment × 100
+  - Revenue-per-investment ratio and cost-per-unit-sold
+  - Incremental units vs baseline and cost-per-incremental-unit (CPIU)
+  - Break-even volume calculation from unit contribution margin
+  - ROI grading: A (>200%), B (100–200%), C (50–100%), D (<50%), F (negative)
+  - Automated flags: low margin, negative ROI, high channel fees, CPIU > ASP, zero sales
+  - Portfolio batch analysis with ROI-grade-based ranking
+  - Portfolio summary with best/worst channel and grade distribution
+- Unit tests: 17 new tests in `tests/test_channel_roi_analyzer.py`
+
 ## [1.5.0] - 2026-03-23
 
 ### Added
