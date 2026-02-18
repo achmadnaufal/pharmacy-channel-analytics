@@ -1,5 +1,20 @@
 # Changelog - Pharmacy Channel Analytics
 
+## [1.7.0] - 2026-03-26
+
+### Added
+- **OutletSegmentationEngine** (`src/outlet_segmentation_engine.py`) — multi-dimensional pharmacy tier segmentation
+  - PLATINUM / GOLD / SILVER / BRONZE tier assignment via weighted composite score (0–100)
+  - Four scoring dimensions: sales potential (40%), strategic importance (25%), relationship quality (20%), operational efficiency (15%)
+  - Customisable dimension weights with validation (must sum to 1.0)
+  - Recommended visit frequency by tier: 4 / 2 / 1 / 0 visits/month
+  - Promotional budget multiplier by tier: 3.0× / 1.8× / 1.0× / 0.4×
+  - Whitespace detection: high-potential outlets with low brand penetration
+  - Tier migration tracking: NEW / UP / DOWN / STABLE vs previous assignment
+  - Action item generation: in-stock alerts, whitespace activation, distributor routing
+  - Portfolio segmentation with composite-score ranking and portfolio summary
+- Unit tests: 14 new tests in `tests/test_outlet_segmentation_engine.py`
+
 ## [1.6.0] - 2026-03-25
 
 ### Added
