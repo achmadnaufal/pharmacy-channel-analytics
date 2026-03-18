@@ -1,5 +1,17 @@
 # Changelog - Pharmacy Channel Analytics
 
+## [1.3.0] - 2026-03-18
+
+### Added
+- **Channel Mix Optimiser** (`src/channel_mix_optimizer.py`) — ROI-maximising budget allocation engine
+  - `ChannelMetrics` dataclass with ROI, revenue-per-dollar, and strategic-weight-adjusted efficiency scoring
+  - `ChannelMixOptimizer`: distributes budget proportionally to efficiency scores with min/max guardrails
+  - Diminishing-returns model (square-root revenue curve) for marginal investment projections
+  - `optimise()`: channel-by-channel allocation with investment change and projected ROI
+  - `portfolio_summary()`: current vs projected portfolio metrics (revenue uplift %, blended ROI)
+  - Default strategic weights catalogue for hospital/retail/clinic/e-commerce/specialty channels
+- **Unit tests** — 25 tests in `tests/test_channel_mix_optimizer.py` covering edge cases, budget conservation, cap enforcement, and single-channel scenarios
+
 ## [1.2.0] - 2026-03-15
 
 ### Added
