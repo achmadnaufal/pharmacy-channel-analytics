@@ -1,5 +1,25 @@
 # Changelog - Pharmacy Channel Analytics
 
+## [1.4.0] - 2026-03-22
+
+### Added
+- **Seasonal Demand Adjuster** (`src/seasonal_demand_adjuster.py`) — classical decomposition for pharmacy channel sales
+  - Monthly data decomposition into trend (centred moving average), seasonal indices, adjusted sales, and irregular component
+  - `MonthlyChannelData` dataclass with period, channel, sales, and optional brand fields
+  - `SeasonalAdjustmentResult` dataclass with full component series and peak/trough identification
+  - `adjust()` — channel-specific decomposition with brand filter and sorted period output
+  - `compare_channels()` — batch decomposition across multiple channels (silently skips insufficient-data channels)
+  - `seasonal_index_summary()` — collapses multi-year SI values to a 12-month annual pattern (Jan–Dec)
+  - Seasonal indices normalised to average 1.0 across all months
+  - Duplicate period detection and validation
+  - Configurable CMA window (default 12 for monthly/annual seasonality) and minimum data threshold
+- **Unit tests** — 22 tests in `tests/test_seasonal_demand_adjuster.py` covering decomposition quality, edge cases, and filters
+
+### References
+- US Census Bureau X-13ARIMA-SEATS documentation
+- Holt (1957) Forecasting seasonals and trends by exponentially weighted moving averages
+- IQVIA Channel Analytics Seasonal Correction Methodology (2022)
+
 ## [1.3.0] - 2026-03-18
 
 ### Added
