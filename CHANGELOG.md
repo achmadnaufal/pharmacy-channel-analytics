@@ -1,5 +1,18 @@
 # Changelog - Pharmacy Channel Analytics
 
+## [1.5.0] - 2026-03-23
+
+### Added
+- `src/market_share_tracker.py` — Drug market share tracking across channels and periods
+  - `MarketShareTracker` with unit and value-based share calculation
+  - `market_share_by_period()` — brand share % per period with channel filter
+  - `share_trend()` — per-brand trend with delta pp and direction classification
+  - `top_brands()` — ranked brands for a given period/channel
+  - `competitive_landscape()` — HHI concentration index and top-3 combined share
+  - `record_bulk()` — batch sales recording
+- `data/sample_market_share_data.csv` — 22 records across antidiabetic and oncology markets
+- 26 unit tests in `tests/test_market_share_tracker.py`
+
 ## [1.4.0] - 2026-03-22
 
 ### Added
