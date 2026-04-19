@@ -122,7 +122,20 @@ class TestChannelROIAnalyzer:
         assert results[0].channel_id == "HIGH"
 
     def test_portfolio_summary(self, analyzer):
-        channels = [make_data("C1"), make_data("C2", channel_id="C2", channel_name="Retail", gross_revenue=500_000, units_sold=2500, cogs=200_000, fees=25_000, logistics=15_000, sf_cost=50_000, marketing=25_000)]
+        channels = [
+            make_data("C1"),
+            make_data(
+                channel_id="C2",
+                channel_name="Retail",
+                gross_revenue=500_000,
+                units_sold=2500,
+                cogs=200_000,
+                fees=25_000,
+                logistics=15_000,
+                sf_cost=50_000,
+                marketing=25_000,
+            ),
+        ]
         results = analyzer.analyze_portfolio(channels)
         summary = analyzer.portfolio_summary(results)
         assert summary["total_channels"] == 2
