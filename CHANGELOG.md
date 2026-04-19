@@ -1,11 +1,50 @@
-## [New] - 2026-03-28
-### Added
-- Edge case validators and handlers
-- Comprehensive unit tests
-- Realistic sample data (realistic_data.csv)
-- Enhanced README with validation examples
-
 # Changelog - Pharmacy Channel Analytics
+
+All notable changes to this project are documented in this file. The
+format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
+
+## [1.8.0] - 2026-04-20
+
+### Added
+- **Channel Concentration Analyzer** (`src/channel_concentration_analyzer.py`)
+  — portfolio-level concentration and Pareto analytics for pharmacy
+  distribution:
+  - Outlet-level Herfindahl-Hirschman Index (HHI) on the 0-10,000 scale
+    with DOJ/FTC concentration bands (unconcentrated / moderate / high).
+  - Scale-free normalised HHI (HHI*) for cross-portfolio comparison.
+  - Effective-number-of-outlets (1 / HHI fraction).
+  - Pareto 80/20 ranking with configurable cutoff.
+  - Retail-vs-hospital-vs-institutional channel split with within-channel
+    HHI and dominant-channel detection.
+  - Immutable dataclass results (`ConcentrationResult`, `ParetoResult`,
+    `ChannelSplitResult`) — inputs are never mutated.
+  - Google-style docstrings on every public method.
+- **Sample dataset** — `demo/sample_data.csv` with 18 Indonesian pharma
+  outlet-month rows spanning Apotek Kimia Farma, Apotek K-24, Guardian,
+  RS Siloam, RSUD, and Dinas Kesehatan across six cities.
+- **Demo script** — `demo/run_concentration_demo.py` renders an HHI /
+  Pareto / channel-split dashboard for the sample dataset.
+- **Tests** — 22 new tests in `tests/test_channel_concentration_analyzer.py`
+  covering equal-share HHI, monopoly HHI, band thresholds, Pareto 80/20,
+  channel split, immutability, and edge cases (zero sales, NaN revenue,
+  duplicate outlet IDs, missing channel labels, empty DataFrame).
+- **Validator tests** — 11 new tests in `tests/test_validators.py`
+  exercising missing fields, empty strings, negative numbers, adjustment
+  allowances, duplicate rows, and empty DataFrames.
+
+### Changed
+- `README.md` — added concentration feature, quickstart for
+  `demo/sample_data.csv`, column schema, and example concentration output.
+- Test badge bumped from 132 to 165 passing tests.
+
+## [1.7.1] - 2026-03-28
+
+### Added
+- Edge case validators and handlers.
+- Additional unit tests across the analyzer surface.
+- Realistic sample data (`sample_data/realistic_data.csv`).
+- README validation examples.
 
 ## [1.7.0] - 2026-03-26
 

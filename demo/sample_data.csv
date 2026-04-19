@@ -1,0 +1,19 @@
+outlet_id,outlet_name,channel_type,city,province,sku,units_sold,revenue,month,sales_rep
+OUT001,Apotek Kimia Farma Sudirman,retail,Jakarta,DKI Jakarta,AMX-500,1250,18750000,2026-01,Budi Santoso
+OUT002,Apotek K-24 Dago,retail,Bandung,Jawa Barat,PCT-650,980,11760000,2026-01,Sri Wahyuni
+OUT003,RS Siloam Kebon Jeruk,hospital,Jakarta,DKI Jakarta,CFX-IV,340,27200000,2026-01,Budi Santoso
+OUT004,Guardian Pondok Indah Mall,retail,Jakarta,DKI Jakarta,VTC-1000,2150,21500000,2026-01,Budi Santoso
+OUT005,RS Siloam Surabaya,hospital,Surabaya,Jawa Timur,CFX-IV,290,23200000,2026-01,Lukman Hakim
+OUT006,Apotek Kimia Farma Malioboro,retail,Semarang,Jawa Tengah,AMX-500,720,10800000,2026-01,Dewi Anggraini
+OUT007,RS Umum Daerah Makassar,hospital,Makassar,Sulawesi Selatan,ONC-CAP,410,82000000,2026-01,Lukman Hakim
+OUT008,Apotek K-24 Pemuda,retail,Semarang,Jawa Tengah,PCT-650,640,7680000,2026-01,Dewi Anggraini
+OUT009,Apotek Kimia Farma Diponegoro,retail,Medan,Sumatera Utara,AMX-500,1080,16200000,2026-01,Rina Pratiwi
+OUT010,RS Adam Malik,hospital,Medan,Sumatera Utara,CFX-IV,265,21200000,2026-01,Rina Pratiwi
+OUT011,Guardian Trans Studio Mall,retail,Bandung,Jawa Barat,VTC-1000,1680,16800000,2026-02,Sri Wahyuni
+OUT012,Apotek K-24 Darmo,retail,Surabaya,Jawa Timur,PCT-650,890,10680000,2026-02,Lukman Hakim
+OUT013,Dinas Kesehatan DKI,institutional,Jakarta,DKI Jakarta,VAC-10D,3200,96000000,2026-02,Budi Santoso
+OUT014,RS Siloam Makassar,hospital,Makassar,Sulawesi Selatan,ONC-CAP,220,44000000,2026-02,Lukman Hakim
+OUT015,Apotek Kimia Farma Pattimura,retail,Bandung,Jawa Barat,AMX-500,860,12900000,2026-02,Sri Wahyuni
+OUT016,RS Hasan Sadikin,hospital,Bandung,Jawa Barat,CFX-IV,310,24800000,2026-02,Sri Wahyuni
+OUT017,Guardian Sun Plaza,retail,Medan,Sumatera Utara,VTC-1000,1420,14200000,2026-02,Rina Pratiwi
+OUT018,Apotek K-24 Manyar,retail,Surabaya,Jawa Timur,PCT-650,0,0,2026-02,Lukman Hakim

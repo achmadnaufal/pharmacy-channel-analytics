@@ -3,10 +3,12 @@
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Last Commit](https://img.shields.io/github/last-commit/achmadnaufal/pharmacy-channel-analytics)
-![Tests](https://img.shields.io/badge/tests-132%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-165%20passing-brightgreen)
 ![Domain](https://img.shields.io/badge/domain-Pharma%20BI-9cf)
 
-> Retail, hospital, and online pharmacy channel performance analytics — Channel Performance Index (CPI), period-over-period growth, channel mix optimisation, ROI benchmarking, outlet segmentation, and seasonal demand adjustment.
+> Retail, hospital, institutional, and online pharmacy channel performance analytics — Channel Performance Index (CPI), period-over-period growth, channel mix optimisation, concentration (HHI) and Pareto 80/20 ranking, ROI benchmarking, outlet segmentation, and seasonal demand adjustment.
+
+Built around the reality of the Indonesian pharma distribution landscape (Apotek Kimia Farma, Apotek K-24, Guardian, RS Siloam, hospital tenders, and institutional buyers such as Dinas Kesehatan) but the schema is portable to any retail/hospital pharma market.
 
 ---
 
@@ -17,6 +19,7 @@
 | **Channel Performance Index (CPI)** | Composite 0–100 score from sales share, target attainment, and ROI |
 | **Growth Rates** | QoQ / MoM growth with trend labels (growing / stable / declining) |
 | **Channel Mix Optimiser** | Resource allocation across hospital, retail, online |
+| **Channel Concentration Analyzer** | Outlet-level HHI, normalised HHI, effective-number-of-outlets, Pareto 80/20, and retail-vs-hospital split with within-channel HHI |
 | **Market Share Tracker** | Brand × channel share evolution |
 | **Outlet Segmentation Engine** | Volume + brand-loyalty tiering for pharmacy outlets |
 | **Seasonal Demand Adjuster** | Cycle-adjusted target setting |
@@ -32,8 +35,29 @@ git clone https://github.com/achmadnaufal/pharmacy-channel-analytics.git
 cd pharmacy-channel-analytics
 pip install -r requirements.txt
 
-# Run the CLI demo
+# Run the CLI demo (CPI + growth on the quarterly dataset)
 python3 demo/run_demo.py
+
+# Run the concentration demo (HHI + Pareto + channel split)
+python3 demo/run_concentration_demo.py
+```
+
+### Quickstart — load the Indonesian pharma sample
+
+```python
+import pandas as pd
+from src.channel_concentration_analyzer import ChannelConcentrationAnalyzer
+
+df = pd.read_csv("demo/sample_data.csv")
+
+analyzer = ChannelConcentrationAnalyzer()
+concentration = analyzer.compute_hhi(df)
+pareto       = analyzer.pareto_ranking(df, cutoff=0.80)
+split        = analyzer.channel_split(df)
+
+print(concentration.hhi, concentration.band)
+print(f"{pareto.outlets_to_cutoff} outlets drive 80% of revenue")
+print(split.per_channel)
 ```
 
 ---
@@ -58,10 +82,39 @@ cpi = analyzer.calculate_channel_performance_index(
 growth = analyzer.get_channel_growth_rates(df)
 ```
 
-Expected CSV columns:
+Expected CSV columns for the CPI / growth analyzer:
 
 ```
 channel, period, sales_value, sales_target, channel_cost, region
+```
+
+Expected columns for the concentration analyzer (see `demo/sample_data.csv`):
+
+```
+outlet_id, outlet_name, channel_type, city, province, sku,
+units_sold, revenue, month, sales_rep
+```
+
+Example concentration output:
+
+```text
+Outlet Concentration (HHI):
+  HHI              : 1,059  (unconcentrated)
+  HHI* normalised  : 0.050
+  Effective outlets: 9.44
+  Active outlets   : 17
+  Zero-sales       : 1
+  Top outlet share : 20.9%
+
+Pareto 80/20 Ranking:
+  10 of 17 outlets (59%) drive 80% of revenue.
+
+Channel Split:
+  Dominant channel : hospital (48.4%)
+  Channel                 Revenue    Share   Outlets      HHI
+  hospital            222,400,000    48.4%         6    2,224
+  retail              141,270,000    30.7%        11    1,080
+  institutional        96,000,000    20.9%         1   10,000
 ```
 
 ### Demo output
@@ -134,7 +187,7 @@ flowchart LR
 
 - **Python 3.9+**
 - **pandas / numpy** — analytics
-- **pytest** — 132-test suite
+- **pytest** — 165-test suite
 - **openpyxl** — Excel I/O
 
 ---
@@ -148,6 +201,7 @@ pharmacy-channel-analytics/
 ├── src/
 │   ├── channel_roi_analyzer.py
 │   ├── channel_mix_optimizer.py
+│   ├── channel_concentration_analyzer.py   # HHI + Pareto + channel split
 │   ├── outlet_segmentation_engine.py
 │   ├── market_share_tracker.py
 │   ├── seasonal_demand_adjuster.py
@@ -155,8 +209,10 @@ pharmacy-channel-analytics/
 │   └── ...
 ├── sample_data/                    # CSV samples for demo
 ├── demo/
-│   └── run_demo.py                 # CLI demo
-├── tests/                          # 132 unit tests
+│   ├── run_demo.py                 # CPI + growth demo
+│   ├── run_concentration_demo.py   # HHI + Pareto + channel split demo
+│   └── sample_data.csv             # 18-row Indonesian pharma outlet dataset
+├── tests/                          # 165 unit tests
 ├── examples/basic_usage.py
 ├── requirements.txt
 └── LICENSE
